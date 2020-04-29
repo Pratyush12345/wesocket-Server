@@ -1,6 +1,6 @@
 const port=process.env.PORT ||8888
-var WebSocketServer=require("ws").Server, 
- wss=new WebSocketServer({port: port});
+const WebSocketServer=require("ws"), 
+ wss=new WebSocketServer.Server({port: port});
  users={}
  connec={}
  wss.on('connection',(connection)=>{
@@ -24,16 +24,16 @@ var WebSocketServer=require("ws").Server,
                 sendToAll(JSON.stringify( data))
                  break;
              case 'candidate':
-                //sendToAll(JSON.stringify( data))
-                 broadcast(connection,JSON.stringify( data))
+                sendToAll(JSON.stringify( data))
+                 //broadcast(connection,JSON.stringify( data))
                  break;    
             case "offer":
-                //sendToAll(JSON.stringify( data))
-                broadcast(connection,JSON.stringify( data))
+                sendToAll(JSON.stringify( data))
+                //broadcast(connection,JSON.stringify( data))
                  break;
             case "answer":
-                //sendToAll(JSON.stringify( data))
-                broadcast(connection,JSON.stringify( data))
+                sendToAll(JSON.stringify( data))
+                //broadcast(connection,JSON.stringify( data))
                  break;
             default:
                  break                   
