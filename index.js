@@ -1,6 +1,6 @@
 const port=process.env.PORT ||8888
-const WebSocketServer=require("ws"), 
- wss=new WebSocketServer.Server({port: port});
+const WebSocket=require("ws");
+const wss=new WebSocket.Server({port: port});
  users={}
  connec={}
  wss.on('connection',(connection)=>{
