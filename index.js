@@ -1,13 +1,28 @@
-const port=process.env.PORT ||8888
-const WebSocket=require("ws");
-const wss=new WebSocket.Server({port: port});
- users={}
- connec={}
+const path= require('path')
+const http= require('http')
+const express= require('express')
+const WebSocketServer=require("ws").Server
+
+const app= express()
+
+const server=http.createServer(app)
+
+const port=process.env.PORT ||1234
+
+const publicDirectoryPath= path.join(__dirname)
+
+app.use(express.static(publicDirectoryPath))
+
+const wss=new WebSocketServer({
+    server:server
+    }
+    );
+     
  wss.on('connection',(connection)=>{
      console.log('user connected')
-      //connec.push(connection)  
+    
      connection.on("message",(message)=>{
-         //console.log('got message',message)
+         
          var data;
          try{
             data=JSON.parse(message)
@@ -58,3 +73,7 @@ const wss=new WebSocket.Server({port: port});
         }
      })
  }
+
+ server.listen(port,()=>{
+    console.log('server is up and running at port '+port);
+})
