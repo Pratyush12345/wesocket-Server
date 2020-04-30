@@ -73,16 +73,16 @@ const wss=new WebSocketServer({
                 sendToAll(JSON.stringify( data))
                  break;
              case 'candidate':
-                sendToAll(JSON.stringify( data))
-                 //broadcast(connection,JSON.stringify( data))
+                //sendToAll(JSON.stringify( data))
+                 broadcast(connection,JSON.stringify( data))
                  break;    
             case "offer":
-                sendToAll(JSON.stringify( data))
-                //broadcast(connection,JSON.stringify( data))
+                //sendToAll(JSON.stringify( data))
+                broadcast(connection,JSON.stringify( data))
                  break;
             case "answer":
-                sendToAll(JSON.stringify( data))
-                //broadcast(connection,JSON.stringify( data))
+                //sendToAll(JSON.stringify( data))
+                broadcast(connection,JSON.stringify( data))
                  break;
             default:
                  break                   
