@@ -1,6 +1,5 @@
 
-
-const ws=new WebSocket('ws://socket-video-server.herokuapp.com')
+const ws=new WebSocket('ws://'+location.host)
 
 ws.addEventListener('open',()=>{
     console.log('connected')

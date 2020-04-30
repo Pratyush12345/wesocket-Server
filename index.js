@@ -1,17 +1,51 @@
 const path= require('path')
 const http= require('http')
 const express= require('express')
+//const socketio= require('socket.io')
 const WebSocketServer=require("ws").Server
 
 const app= express()
-
-const server=http.createServer(app)
 
 const port=process.env.PORT ||1234
 
 const publicDirectoryPath= path.join(__dirname)
 
 app.use(express.static(publicDirectoryPath))
+
+const server=http.createServer(app)
+
+// const io=socketio(server)
+
+// io.on('connection',(socket)=>{
+
+//     socket.on('new',sendPeer)
+//     socket.on('offer',sendOffer) 
+//     socket.on('answer',sendAnswer)
+//     socket.on('candidate',sendRemoteIceCandidate)
+    
+// })
+// function sendPeer(message){
+//     data=JSON.parse(message)
+//     console.log(data)
+//     data.type="peer"
+//     this.emit('peer',JSON.stringify( data))
+// }
+
+// function sendOffer(offer){
+//     console.log(offer)
+//     this.broadcast.emit('offer',offer)
+// }
+// function sendAnswer(answer){
+//     console.log(answer)
+//     this.broadcast.emit('answer',answer)
+// }
+// function sendRemoteIceCandidate(candidate){
+//     console.log(candidate)
+//     this.broadcast.emit('candidate',candidate)
+// }
+
+
+
 
 const wss=new WebSocketServer({
     server:server
